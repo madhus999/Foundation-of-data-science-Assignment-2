@@ -1,0 +1,140 @@
+﻿Rank,Player,Country,Position,Passes,Passes_Completed,Passing_Accuracy_Percent
+1,Rodri,ESP,MF,799,747,93
+2,Pau Cubarsi,ESP,DF,690,668,97
+3,Aymeric Laporte,ESP,DF,660,618,94
+4,Leandro Paredes,ARG,MF,565,532,94
+5,Marc Guehi,ENG,DF,532,514,97
+6,Enzo Fernandez,ARG,MF,519,480,92
+7,Ezri Konsa,ENG,DF,488,469,96
+8,Manuel Akanji,SUI,DF,479,444,93
+9,Marc Cucurella,ESP,DF,474,433,91
+10,Granit Xhaka,SUI,MF,470,427,91
+11,Pedri,ESP,MF,469,420,90
+12,Lisandro Martinez,ARG,DF,450,422,94
+13,Achraf Hakimi,MAR,DF,449,402,90
+14,Elliot Anderson,ENG,MF,445,396,89
+15,Dayot Upamecano,FRA,DF,443,409,92
+16,Nico Elvedi,SUI,DF,438,406,93
+17,Neil El Aynaoui,MAR,MF,433,405,94
+18,Gabriel Magalhaes,BRA,DF,431,413,96
+19,Alexis Mac Allister,ARG,MF,430,393,91
+19,Cristian Romero,ARG,DF,430,415,97
+21,Sander Berge,NOR,MF,425,412,97
+22,Pedro Porro,ESP,DF,420,379,90
+24,Vitinha,POR,MF,403,379,94
+25,Brandon Mechele,BEL,DF,399,369,92
+26,Ramy Bensebaini,ALG,DF,385,359,93
+27,Aissa Mandi,ALG,DF,382,357,93
+28,Marquinhos,BRA,DF,380,367,97
+29,Jonathan Tah,GER,DF,375,364,97
+30,Joshua Kimmich,GER,DF,368,336,91
+31,Martin Odegaard,NOR,MF,367,322,88
+33,Davinson Sanchez,COL,DF,361,324,90
+34,Jan Paul Van Hecke,NED,DF,360,335,93
+35,Marawan Attia,EGY,MF,357,313,88
+36,Jules Kounde,FRA,DF,353,314,89
+37,Adrien Rabiot,FRA,MF,351,323,92
+38,Virgil Van Dijk,NED,DF,347,330,95
+39,Declan Rice,ENG,MF,340,312,92
+40,Renato Veiga,POR,DF,336,320,95
+41,Rodrigo De Paul,ARG,MF,327,300,92
+42,Issa Diop,MAR,DF,326,299,92
+43,Remo Freuler,SUI,MF,324,299,92
+44,Azzedine Ounahi,MAR,MF,315,281,89
+44,William Saliba,FRA,DF,315,307,97
+47,Torbjorn Heggem,NOR,DF,301,282,94
+48,Tim Ream,USA,DF,298,281,94
+49,Pedro Vite,ECU,MF,297,269,91
+49,Fabian Ruiz,ESP,MF,297,266,90
+52,Ricardo Rodriguez,SUI,DF,295,243,82
+52,Moises Caicedo,ECU,MF,295,264,89
+54,Danilo,BRA,DF,294,262,89
+55,Chris Richards,USA,DF,291,277,95
+56,Gustavo Puerta,COL,DF,290,264,91
+56,Moussa Niakhate,SEN,DF,290,271,93
+58,Jhon Lucumi,COL,DF,285,262,92
+59,Alex Freeman,USA,DF,283,256,90
+59,Lucas Digne,FRA,DF,283,252,89
+59,Krepin Diatta,SEN,DF,283,255,90
+62,Mohamed Hany,EGY,DF,282,245,87
+62,Nuno Mendes,POR,DF,282,239,85
+64,Stephen Eustaquio,CAN,MF,281,244,87
+65,Ime Okon,RSA,DF,280,257,92
+65,Nabil Bentaleb,ALG,MF,280,255,91
+67,Bruno Fernandes,POR,MF,278,239,86
+68,Nahuel Molina,ARG,DF,276,234,85
+69,Douglas Santos,BRA,DF,275,256,93
+69,Noussair Mazraoui,MAR,DF,275,251,91
+71,Jefferson Lerma,COL,MF,274,242,88
+72,Kristoffer Ajer,NOR,DF,273,256,94
+73,Florian Wirtz,GER,MF,271,223,82
+74,Idrissa Gana Gueye,SEN,MF,270,243,90
+76,Josip Sutalo,CRO,DF,267,241,90
+79,Ayyoub Bouaddi,MAR,MF,264,237,90
+80,Timothy Castagne,BEL,DF,263,230,87
+80,Manu Kone,FRA,MF,263,242,92
+82,Joao Neves,POR,MF,261,247,95
+83,Aleksandar Pavlovic,GER,MF,260,240,92
+83,Yasser Ibrahim,EGY,DF,260,239,92
+85,Youri Tielemans,BEL,MF,255,221,87
+87,Aurelien Tchouameni,FRA,MF,254,239,94
+88,Ruben Dias,POR,DF,249,233,94
+89,Luka Modric,CRO,MF,248,225,91
+90,Maxim De Cuyper,BEL,DF,246,203,83
+90,Antonio Ruediger,GER,DF,246,230,93
+92,Ramy Rabia,EGY,DF,244,224,92
+92,Fares Chaibi,ALG,MF,244,220,90
+94,Frenkie De Jong,NED,MF,243,224,92
+95,Abdulkerim Bardakci,TUR,DF,242,222,92
+96,Alistair Johnston,CAN,DF,240,184,77
+96,Jhon Arias,COL,MF,240,227,95
+98,Willian Pacho,ECU,DF,238,217,91
+98,Bilal El Khannouss,MAR,MF,238,186,78
+100,Johan Vasquez,MEX,DF,237,221,93
+100,James Rodriguez,COL,MF,237,199,84
+103,Lee Gihyuk,KOR,MF,236,217,92
+105,Jude Bellingham,ENG,MF,231,191,83
+105,Tyler Adams,USA,MF,231,211,91
+107,Nicolas Raskin,BEL,MF,230,197,86
+109,Mathias Olivera,URU,DF,226,213,94
+109,Kim Minjae,KOR,DF,226,221,98
+109,Chadi Riad,MAR,DF,226,212,94
+113,Casemiro,BRA,MF,224,200,89
+114,David Alaba,AUT,DF,222,198,89
+115,Antonee Robinson,USA,DF,221,181,82
+115,Alessandro Circati,AUS,DF,221,177,80
+117,Weston Mckennie,USA,MF,220,173,79
+118,Nathan Ngoy,BEL,DF,219,205,94
+119,Alex Baena,ESP,MF,218,178,82
+119,Hwang Inbeom,KOR,MF,218,193,89
+121,Nicolas Tagliafico,ARG,DF,217,190,88
+122,Nico O'Reilly,ENG,DF,216,200,93
+124,Daniel Munoz,COL,DF,213,194,91
+124,Mbekezeli Mbokazi,RSA,DF,213,185,87
+126,Rayan Ait Nouri,ALG,DF,211,190,90
+128,Mateo Kovacic,CRO,MF,208,198,95
+129,Eman Ashour,EGY,MF,207,176,85
+130,Gustaf Lagerbielke,SWE,DF,206,173,84
+132,Richie Laryea,CAN,DF,202,167,83
+132,Johan Mojica,COL,DF,202,161,80
+135,Lewis Ferguson,SCO,MF,201,185,92
+135,Djed Spence,ENG,DF,201,177,88
+138,Marin Pongracic,CRO,DF,200,182,91
+138,Bruno Guimaraes,BRA,MF,200,161,81
+138,Daichi Kamada,JPN,MF,200,170,85
+138,Lee Hanbeom,KOR,DF,200,183,92
+138,Victor Lindelof,SWE,DF,200,190,95
+143,Harry Souttar,AUS,DF,199,171,86
+143,Erik Lira,MEX,MF,199,182,91
+143,Hiroki Ito,JPN,DF,199,178,89
+149,Teboho Mokoena,RSA,MF,196,176,90
+151,Diney Borges,CPV,DF,195,158,81
+152,Luc De Fougerolles,CAN,DF,191,170,89
+152,Mohamed Lashin,EGY,MF,191,169,88
+154,Ibrahim Sangare,CIV,MF,190,172,91
+154,Lucas Paqueta,BRA,MF,190,162,85
+154,Hakan Calhanoglu,TUR,MF,190,171,90
+157,Piero Hincapie,ECU,DF,189,160,85
+157,Leroy Sane,GER,MF,189,161,85
+159,Reece James,ENG,DF,188,173,92
+159,Franck Kessie,CIV,MF,188,165,88
