@@ -77,27 +77,22 @@ def load_and_wrangle(csv_path):
     """Read the raw two-header CSV export, flatten headers, clean it up."""
     df = pd.read_csv(csv_path, header=[0, 1])
 
-    # Use only the second header row (the real column names). The top row
-    # is just section labels (Playing Time / Performance / Penalty Kicks)
-    # and different CSV exporters place those labels differently (only on
-    # the first column of each section, or repeated across every column),
-    # so relying on it is fragile. Ignoring it entirely and working from
-    # the actual column names underneath is robust across pandas versions
-    # and export tools.
-    df.columns = df.columns.get_level_values(1)
-
-    # Save% appears twice (goalkeeper save rate, then penalty-kick save
-    # rate under a different section) - de-duplicate before selecting.
-    seen = {}
-    deduped = []
-    for name in df.columns:
-        if name in seen:
-            seen[name] += 1
-            deduped.append(f"{name}_{seen[name]}")
-        else:
-            seen[name] = 0
-            deduped.append(name)
-    df.columns = deduped
+    # Column NAMES from the two-row header are unreliable across different
+    # pandas versions and CSV re-exports (the group-label row gets placed
+    # inconsistently). Column POSITION is stable for this export format, so
+    # select by position instead: Squad, #Pl, MP, Starts, Min, 90s, GA,
+    # GA90, SoTA, Saves, Save%, W, D, L, CS, CS% are always columns 0-15,
+    # in that fixed order.
+    assert df.shape[1] == 21, (
+        f"expected 21 columns in the raw export, got {df.shape[1]} - "
+        "the file layout does not match the expected FBref goalkeeping export"
+    )
+    raw = df.iloc[:, 0:16].copy()
+    raw.columns = [
+        "Squad", "# Pl", "MP", "Starts", "Min", "90s", "GA", "GA90", "SoTA",
+        "Saves", "Save%", "W", "D", "L", "CS", "CS%",
+    ]
+    df = raw
 
     # Squad column is "<fbref_code> <Country Name>", e.g. "ar Argentina"
     split = df["Squad"].str.split(n=1, expand=True)
@@ -120,6 +115,12 @@ def load_and_wrangle(csv_path):
     assert keep["save_pct"].notna().all(), "missing save_pct values"
     assert keep["team"].is_unique, "duplicate squads"
     assert len(keep) == 48, f"expected 48 squads, got {len(keep)}"
+    # sanity check: save_pct must be a percentage (0-100), confirming the
+    # positional column selection above landed on the right column
+    assert keep["save_pct"].between(0, 100).all(), (
+        "save_pct values out of [0,100] range - column selection may be "
+        "misaligned, check the raw file's column order"
+    )
 
     keep.to_csv(CLEAN_CSV, index=False)
     return keep
