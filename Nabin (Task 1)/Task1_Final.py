@@ -1,6 +1,6 @@
 """
 Task 1: Shooting Efficiency — Finishing Performance Relative to Expected Goals (xG)
-
+Author: Nabin Thapa
 
 Analytic Question: Among World Cup 2026 players who registered a non-zero Expected
 Goals (xG) value, is the average Goals-to-xG ratio significantly different from 1.0
@@ -23,6 +23,8 @@ import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
 
+# Always work from the folder this script is saved in, so the CSV
+# is found correctly no matter where the script is run from.
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 np.random.seed(42)
@@ -49,6 +51,7 @@ print(df.head(10))
 
 df['goal_xg_ratio'] = df['xG Efficiency'].str.replace('x', '', regex=False).astype(float)
 df_clean_xg = df[df['xG'] > 0].copy()
+df_clean_xg.to_csv("fifa_attacking_stats_cleaned.csv", index=False)
 print("\nPopulation size:", len(df_clean_xg))
 print("Population mean Goals/xG ratio:", round(df_clean_xg['goal_xg_ratio'].mean(), 3))
 
