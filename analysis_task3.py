@@ -3,7 +3,7 @@ HIT140 - Group 78 - Task 3 (Suman)
 FIFA World Cup 2026 - Goalkeeper Save Percentage
 
 ===============================================================================
-ANALYTIC TASK STRUCTURE (matches assignment brief, Objective 1)
+ANALYTIC TASK STRUCTURE (task 3)
 ===============================================================================
 
 1. ANALYTIC QUESTION FORMULATION
