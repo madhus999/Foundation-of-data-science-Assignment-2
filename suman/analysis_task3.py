@@ -77,17 +77,20 @@ def load_and_wrangle(csv_path):
     """Read the raw two-header CSV export, flatten headers, clean it up."""
     df = pd.read_csv(csv_path, header=[0, 1])
 
-    # Flatten the two-row header, e.g. ('Performance','GA') -> 'Performance_GA'.
-    # This source file has a duplicate column name (Save% appears once for
-    # goalkeeper save rate, once under Penalty Kicks for PK save rate), so
-    # duplicates are de-duplicated with a numeric suffix before use.
-    flat = [
-        "_".join(c).strip("_") if c[0] and "Unnamed" not in c[0] else c[1]
-        for c in df.columns
-    ]
+    # Use only the second header row (the real column names). The top row
+    # is just section labels (Playing Time / Performance / Penalty Kicks)
+    # and different CSV exporters place those labels differently (only on
+    # the first column of each section, or repeated across every column),
+    # so relying on it is fragile. Ignoring it entirely and working from
+    # the actual column names underneath is robust across pandas versions
+    # and export tools.
+    df.columns = df.columns.get_level_values(1)
+
+    # Save% appears twice (goalkeeper save rate, then penalty-kick save
+    # rate under a different section) - de-duplicate before selecting.
     seen = {}
     deduped = []
-    for name in flat:
+    for name in df.columns:
         if name in seen:
             seen[name] += 1
             deduped.append(f"{name}_{seen[name]}")
@@ -102,8 +105,8 @@ def load_and_wrangle(csv_path):
     df["team"] = split[1]
 
     keep = df[[
-        "team", "code", "# Pl", "Playing Time_MP", "Starts", "Min", "90s",
-        "Performance_GA", "GA90", "SoTA", "Saves", "Save%", "W", "D", "L",
+        "team", "code", "# Pl", "MP", "Starts", "Min", "90s",
+        "GA", "GA90", "SoTA", "Saves", "Save%", "W", "D", "L",
         "CS", "CS%",
     ]].copy()
     keep.columns = [
