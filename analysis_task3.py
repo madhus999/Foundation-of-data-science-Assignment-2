@@ -61,10 +61,13 @@ from scipy import stats
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+from pathlib import Path
+
+SCRIPT_DIR = Path(__file__).resolve().parent  # folder this script lives in
 
 SEED = 42
-CSV_FILE = "goalkeeping_dataset.csv"   # place this file in the same folder
-CLEAN_CSV = "gk_squads.csv"
+CSV_FILE = SCRIPT_DIR / "goalkeeping_dataset.csv"   # always found, regardless of cwd
+CLEAN_CSV = SCRIPT_DIR / "gk_squads.csv"
 BENCHMARK = 85.0                        # H0: population mean save% = 85 (from brief)
 SAMPLE_SIZE = 30
 CONFIDENCE = 0.95
@@ -158,7 +161,8 @@ def confidence_interval(sample, confidence=0.95):
     return mean, mean - margin, mean + margin, margin
 
 
-def make_distribution_plot(df, out="fig1_distribution.png"):
+def make_distribution_plot(df, out=None):
+    out = out or SCRIPT_DIR / "fig1_distribution.png"
     fig, ax = plt.subplots(figsize=(6, 4))
     ax.hist(df["save_pct"], bins=10, color="#1f4e79", edgecolor="white")
     ax.axvline(df["save_pct"].mean(), color="black", linewidth=1.5,
@@ -174,7 +178,8 @@ def make_distribution_plot(df, out="fig1_distribution.png"):
     plt.close(fig)
 
 
-def make_benchmark_plot(mean, margin, out="fig2_benchmark_gap.png"):
+def make_benchmark_plot(mean, margin, out=None):
+    out = out or SCRIPT_DIR / "fig2_benchmark_gap.png"
     fig, ax = plt.subplots(figsize=(5, 4.2))
     ax.bar(["Sample mean\n(save%)"], [mean], yerr=[margin], capsize=8,
            color="#1f4e79", width=0.5)
@@ -257,7 +262,7 @@ def main():
         "sample_n": sample_stats["n"], "sample_mean_pct": sample_stats["mean"],
         "ci_95_low_pct": ci_lo, "ci_95_high_pct": ci_hi, "benchmark_pct": BENCHMARK,
         "t_stat": t_stat, "p_value": p_val, "decision": decision,
-    }]).to_csv("task3_results_summary.csv", index=False)
+    }]).to_csv(SCRIPT_DIR / "task3_results_summary.csv", index=False)
 
     print("\nSaved: gk_squads.csv, fig1_distribution.png, fig2_benchmark_gap.png, "
           "task3_results_summary.csv")
