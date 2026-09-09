@@ -1,0 +1,2 @@
+population_n,population_mean_pct,sample_n,sample_mean_pct,ci_95_low_pct,ci_95_high_pct,benchmark_pct,t_stat,p_value,decision
+48,64.83958333333334,30,64.93333333333334,59.95944901015736,69.90721765650932,85.0,-8.25128588017845,4.260003254283025e-09,Reject H0
