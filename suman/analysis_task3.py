@@ -1,17 +1,18 @@
 """
 HIT140 - Group 78 - Task 3 (Suman)
 FIFA World Cup 2026 - Goalkeeper Save Percentage
+(CSV version - reads goalkeeping_dataset.csv, the raw two-row-header export)
 
 ===============================================================================
-ANALYTIC TASK STRUCTURE (task 3)
+ANALYTIC TASK STRUCTURE (matches assignment brief, Objective 1)
 ===============================================================================
 
 1. ANALYTIC QUESTION FORMULATION
    Original brief question: "Is average goalkeeper distribution accuracy
    different from 85%?"
-   Data available (sportsref_download.xls, FBref.com) does not contain a
-   distribution accuracy field. It contains Save% instead, defined by the
-   source file itself as:
+   Data available (goalkeeping_dataset.csv, FBref.com export) does not
+   contain a distribution accuracy field. It contains Save% instead,
+   defined by the source as:
        (Shots on Target Against - Goals Against) / Shots on Target Against
    This is a shot-stopping statistic, not a distribution (passing) statistic.
    Adjusted question actually answered by this script:
@@ -21,8 +22,10 @@ ANALYTIC TASK STRUCTURE (task 3)
    in this assignment that focuses on goals scored.
 
 2. DATA WRANGLING
-   Source: sportsref_download.xls (FBref.com, squad-level Goalkeeping
-   stats, HTML table read via pandas). Cleaned into gk_squads.csv.
+   Source: goalkeeping_dataset.csv - raw export with a two-row header
+   (section row: Playing Time / Performance / Penalty Kicks, then the
+   actual column names). Header is flattened, squad names split into a
+   country code and full team name, columns renamed, then validated.
    See load_and_wrangle().
 
 3. DATA PREPARATION AND SAMPLING
@@ -48,8 +51,8 @@ ANALYTIC TASK STRUCTURE (task 3)
    See main(), stats.ttest_1samp() call.
 ===============================================================================
 
-Run:  python analysis_task3.py
-Needs: pandas, numpy, scipy, matplotlib, lxml   (see requirements.txt)
+Run:  python analysis_task3_v2.py
+Needs: pandas, numpy, scipy, matplotlib   (plain CSV, no lxml needed)
 """
 
 import numpy as np
@@ -60,9 +63,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 SEED = 42
-RAW_FILE = "sportsref_download.xls"   # place this file in the same folder
+CSV_FILE = "goalkeeping_dataset.csv"   # place this file in the same folder
 CLEAN_CSV = "gk_squads.csv"
-BENCHMARK = 85.0          # H0: population mean save% = 85 (from brief)
+BENCHMARK = 85.0                        # H0: population mean save% = 85 (from brief)
 SAMPLE_SIZE = 30
 CONFIDENCE = 0.95
 
@@ -70,16 +73,28 @@ CONFIDENCE = 0.95
 # -----------------------------------------------------------------------
 # 2. DATA WRANGLING
 # -----------------------------------------------------------------------
-def load_and_wrangle(raw_path):
-    """Parse the FBref HTML export, flatten headers, clean squad names."""
-    tables = pd.read_html(raw_path, encoding="utf-8")
-    df = tables[0]
+def load_and_wrangle(csv_path):
+    """Read the raw two-header CSV export, flatten headers, clean it up."""
+    df = pd.read_csv(csv_path, header=[0, 1])
 
-    # Flatten the two-row header, e.g. ('Performance','Save%') -> 'Performance_Save%'
-    df.columns = [
+    # Flatten the two-row header, e.g. ('Performance','GA') -> 'Performance_GA'.
+    # This source file has a duplicate column name (Save% appears once for
+    # goalkeeper save rate, once under Penalty Kicks for PK save rate), so
+    # duplicates are de-duplicated with a numeric suffix before use.
+    flat = [
         "_".join(c).strip("_") if c[0] and "Unnamed" not in c[0] else c[1]
         for c in df.columns
     ]
+    seen = {}
+    deduped = []
+    for name in flat:
+        if name in seen:
+            seen[name] += 1
+            deduped.append(f"{name}_{seen[name]}")
+        else:
+            seen[name] = 0
+            deduped.append(name)
+    df.columns = deduped
 
     # Squad column is "<fbref_code> <Country Name>", e.g. "ar Argentina"
     split = df["Squad"].str.split(n=1, expand=True)
@@ -87,11 +102,9 @@ def load_and_wrangle(raw_path):
     df["team"] = split[1]
 
     keep = df[[
-        "team", "code", "# Pl", "Playing Time_MP", "Playing Time_Starts",
-        "Playing Time_Min", "Playing Time_90s", "Performance_GA",
-        "Performance_GA90", "Performance_SoTA", "Performance_Saves",
-        "Performance_Save%", "Performance_W", "Performance_D", "Performance_L",
-        "Performance_CS", "Performance_CS%",
+        "team", "code", "# Pl", "Playing Time_MP", "Starts", "Min", "90s",
+        "Performance_GA", "GA90", "SoTA", "Saves", "Save%", "W", "D", "L",
+        "CS", "CS%",
     ]].copy()
     keep.columns = [
         "team", "code", "players_used", "matches_played", "starts", "minutes",
@@ -180,7 +193,7 @@ def main():
     print("=" * 70)
     print("Brief question : Is average goalkeeper distribution accuracy")
     print("                  different from 85%?")
-    print("Data available  : sportsref_download.xls has no distribution")
+    print("Data available  : goalkeeping_dataset.csv has no distribution")
     print("                  accuracy field; it has Save% instead.")
     print("Question tested : Is average squad save percentage different")
     print("                  from 85%?\n")
@@ -189,8 +202,8 @@ def main():
     print("=" * 70)
     print("2. DATA WRANGLING")
     print("=" * 70)
-    df = load_and_wrangle(RAW_FILE)
-    print(f"Loaded and cleaned {len(df)} squads from {RAW_FILE}")
+    df = load_and_wrangle(CSV_FILE)
+    print(f"Loaded and cleaned {len(df)} squads from {CSV_FILE}")
     print(f"Saved cleaned file: {CLEAN_CSV}\n")
 
     # ---- 3. DATA PREPARATION AND SAMPLING ----
