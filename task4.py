@@ -50,6 +50,13 @@ sample.to_csv(
     index=False
 )
 
+# Print descriptive statistics for the passing-accuracy samples.
+print("\nDescriptive Statistics - Defenders")
+print(sample_defenders["Passing_Accuracy_Percent"].describe())
+
+print("\nDescriptive Statistics - Midfielders")
+print(sample_midfielders["Passing_Accuracy_Percent"].describe())
+
 # Compare the passing-accuracy distributions for the two positions.
 
 plt.boxplot(
