@@ -1,6 +1,5 @@
 """
 Task 1: Shooting Efficiency — Finishing Performance Relative to Expected Goals (xG)
-Author: Nabin Thapa
 
 Analytic Question: Among World Cup 2026 players who registered a non-zero Expected
 Goals (xG) value, is the average Goals-to-xG ratio significantly different from 1.0
