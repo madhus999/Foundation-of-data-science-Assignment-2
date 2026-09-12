@@ -1,59 +1,9 @@
 """
 HIT140 - Group 78 - Task 3 (Suman)
 FIFA World Cup 2026 - Goalkeeper Save Percentage
-(CSV version - reads goalkeeping_dataset.csv, the raw two-row-header export)
-
-===============================================================================
-ANALYTIC TASK STRUCTURE (matches assignment brief, Objective 1)
-===============================================================================
-
-1. ANALYTIC QUESTION FORMULATION
-   Original brief question: "Is average goalkeeper distribution accuracy
-   different from 85%?"
-   Data available (goalkeeping_dataset.csv, FBref.com export) does not
-   contain a distribution accuracy field. It contains Save% instead,
-   defined by the source as:
-       (Shots on Target Against - Goals Against) / Shots on Target Against
-   This is a shot-stopping statistic, not a distribution (passing) statistic.
-   Adjusted question actually answered by this script:
-       On average, was a squad's goalkeeper save percentage at the 2026
-       World Cup significantly different from 85%?
-   Focal point: goalkeeper shot-stopping accuracy. Distinct from any task
-   in this assignment that focuses on goals scored.
-
-2. DATA WRANGLING
-   Source: goalkeeping_dataset.csv - raw export with a two-row header
-   (section row: Playing Time / Performance / Penalty Kicks, then the
-   actual column names). Header is flattened, squad names split into a
-   country code and full team name, columns renamed, then validated.
-   See load_and_wrangle().
-
-3. DATA PREPARATION AND SAMPLING
-   Population: all 48 squads at the 2026 World Cup with recorded save
-   percentage data.
-   Sample: simple random sample, n=30, drawn without replacement, fixed
-   seed for reproducibility.
-   See draw_sample().
-
-4. DESCRIPTIVE STATISTICS
-   Mean, median, standard deviation, min, max, quartiles - computed for
-   both the population and the drawn sample.
-   See describe().
-
-5. INFERENTIAL STATISTICS - CONFIDENCE INTERVAL
-   95% confidence interval for the population mean save percentage,
-   built from the sample using the t-distribution.
-   See confidence_interval().
-
-6. INFERENTIAL STATISTICS - ONE-SAMPLE T-TEST
-   H0: population mean save% = 85 (the brief's benchmark)
-   H1: population mean save% != 85
-   See main(), stats.ttest_1samp() call.
-===============================================================================
-
-Run:  python analysis_task3_v2.py
-Needs: pandas, numpy, scipy, matplotlib   (plain CSV, no lxml needed)
+Question: Is the average save percentage different from 85%?
 """
+
 
 import numpy as np
 import pandas as pd
