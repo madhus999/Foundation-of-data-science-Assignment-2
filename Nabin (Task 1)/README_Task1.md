@@ -1,6 +1,6 @@
 # Task 1: Shooting Efficiency — Finishing Performance Relative to Expected Goals (xG)
 
-**Author:** Nabin Thapa
+ Nabin Thapa
 **Assessment:** HIT140 Foundations of Data Science — Group Project, Objective 1
 
 ---
@@ -20,35 +20,6 @@ Data was manually selected and copied from the website's table, then parsed and 
 
 ---
 
-## Files in This Folder
-
-| File | Description |
-|---|---|
-| `FIFA_World_Cup_Analysis.ipynb` | Main analysis notebook — full workflow with explanations, code, and outputs |
-| `Task1_Final.py` | Standalone Python script version of the same analysis (no notebook required) |
-| `fifa_attacking_stats_real.csv` | Raw extracted dataset (100 players) |
-| `xg_ratio_distribution.png` | Chart showing the distribution of the sample's Goals/xG ratio |
-| `.gitignore.txt` | Excludes local environment files from version control |
-
----
-
-## How to Run
-
-**Requirements:** Python 3.13+, with the following packages installed:
-```
-pip install pandas numpy scipy matplotlib
-```
-
-**Option 1 — Notebook (recommended, shows outputs inline):**
-Open `FIFA_World_Cup_Analysis.ipynb` in VS Code or Jupyter and run all cells.
-
-**Option 2 — Script:**
-```
-python Task1_Final.py
-```
-This will print all results to the terminal and regenerate the chart.
-
----
 
 ## Method Summary
 
