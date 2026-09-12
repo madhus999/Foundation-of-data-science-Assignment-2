@@ -9,11 +9,6 @@ As a secondary investigation, does this ratio differ between forwards and midfie
 Data source: FIFA official World Cup 2026 statistics hub, Attacking category.
 Data was copied manually from the website's table and parsed in Python.
 
-Traditional shot-conversion percentage treats every shot as equally likely to score,
-regardless of difficulty. Expected Goals (xG) instead estimates how likely each shot
-was to result in a goal, based on factors like distance, angle, and shot type.
-Comparing actual Goals to xG reveals whether a player finished better or worse than
-the quality of chances they received.
 """
 
 import os
@@ -22,8 +17,6 @@ import numpy as np
 from scipy import stats
 import matplotlib.pyplot as plt
 
-# Always work from the folder this script is saved in, so the CSV
-# is found correctly no matter where the script is run from.
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
 np.random.seed(42)
